@@ -25,7 +25,8 @@
 
 ```JavaScript
 const WeiXinPay = require('weixinpay-sdk')
-// 我的配置
+// 基础配置
+// 特别说明：只要正确配置了商户 api 私密 key， SDK 会自动创建随机字符串和签名。
 let config = {
   appid: '', // 公众账号 ID
   mch_id: '', // 商户号
