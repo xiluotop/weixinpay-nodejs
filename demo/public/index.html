@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>微信支付测试</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/qrcode.min.js"></script>
+</head>
+
+<body>
+  <div class="main">
+    <h1>支付测试</h1>
+    <div class="info">
+      <div class="left">
+        <p>订单编号：<span class="order">xxxxxx</span></p>
+        <p>订单类型：<span class="type">xxxxxx</span></p>
+      </div>
+      <div class="right">
+        <p>支付金额：<b>￥0.01</b></p>
+      </div>
+    </div>
+    <div class="paypic">
+      <img src="./img/WePayLogo.png" alt="" class="logo">
+      <div id="qrcode">
+        <div class="success">支付成功！</div>
+      </div>
+      <img src="./img/说明文字.png" alt="" class="picinfo">
+    </div>
+    <div class="queryorder">
+      我已支付
+    </div>
+    <div class="closeorder">
+      取消订单
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      let orderId;
+      let searchTimer;
+      let baseUrl = 'http://jiangck.com:10002'; // http://localhost:10002 基地址
+      $.ajax({
+        type: 'get',
+        url: baseUrl+'/getwxorder',
+        success: function (res) {
+          $('.main .info .left .order').text(res.order);
+          $('.main .info .left .type').text(res.trade_type);
+          if (res.return_code == 'SUCCESS' && res.return_msg == 'OK') {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+              text: res.code_url,
+              width: $('#qrcode').width(),
+              height: $('#qrcode').width(),
+              colorDark: "#000000",
+              colorLight: "#ffffff",
+              correctLevel: QRCode.CorrectLevel.H
+            });
+            orderId = res.order;
+            /* 当前的微信支付方式支付成功后客户端并不会有任何支付提示
+               因此在这里当订单生成成功后，利用循环定时器做一个简单的
+               轮播查询，直接请求订单查询接口，当订单支付成功后，做出
+               相应的提示即可
+            */
+            searchTimer = setInterval(function () {
+              $.ajax({
+                type: 'get',
+                url: baseUrl+'/queryorder',
+                data: {
+                  out_trade_no: orderId
+                },
+                success: function (res) {
+                  if (res.return_code === 'SUCCESS' && res.return_msg === 'OK' && res
+                    .trade_state === 'SUCCESS') {
+                    // 这里模拟的是同步通知效果，千万不可以做实际的后台业务操作
+                    $('#qrcode .success').show();
+                    clearInterval(searchTimer)
+                  }
+                }
+              })
+            }, 2000)
+          } else {
+            alert('订单生成失败！')
+          }
+        }
+      })
+      $('.queryorder').click(function () {
+        $.ajax({
+          type: 'get',
+          url: baseUrl+'/queryorder',
+          data: {
+            out_trade_no: orderId
+          },
+          success: function (res) {
+            if (res.return_code === 'SUCCESS' && res.return_msg === 'OK') {
+              alert(res.trade_state_desc)
+            } else {
+              alert(res.msg);
+            }
+          }
+        })
+      })
+      $('.closeorder').click(function () {
+        if (confirm('是否关闭当前订单？')) {
+          $.ajax({
+            type: 'get',
+            url: baseUrl+'/closeorder',
+            data: {
+              out_trade_no: orderId,
+            },
+            success: function (res) {
+              alert(res.msg)
+            }
+          })
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.main {
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  position: relative;
+}
+.main h1 {
+  margin-left: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+.main .info {
+  height: 80px;
+  background: #ccc;
+  box-sizing: border-box;
+  padding: 10px 50px;
+}
+.main .info p {
+  margin-top: 5px;
+}
+.main .info .left {
+  float: left;
+}
+.main .info .right {
+  float: right;
+  height: 100%;
+}
+.main .info .right p {
+  height: 100%;
+  transform: translateY(25%);
+}
+.main .paypic {
+  text-align: center;
+}
+.main .paypic .logo {
+  width: 350px;
+  height: 100px;
+  margin: 20px 0;
+}
+.main .paypic #qrcode {
+  height: 280px;
+  width: 280px;
+  margin: 10px auto;
+  position: relative;
+}
+.main .paypic #qrcode .success {
+  width: 280px;
+  height: 280px;
+  line-height: 280px;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 10px;
+  position: absolute;
+  z-index: 1;
+  color: aliceblue;
+  background-color: rgba(17, 16, 16, 0.8);
+  display: none;
+}
+.main .paypic .picinfo {
+  width: 280px;
+}
+.main .queryorder {
+  cursor: pointer;
+  width: 150px;
+  height: 80px;
+  line-height: 80px;
+  background: greenyellow;
+  text-align: center;
+  font-size: 30px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+}
+.main .queryorder:hover {
+  background: #7ebe1e;
+}
+.main .closeorder {
+  cursor: pointer;
+  width: 150px;
+  height: 80px;
+  line-height: 80px;
+  background: #b8b9b7;
+  text-align: center;
+  font-size: 30px;
+  position: absolute;
+  right: 160px;
+  bottom: 0;
+  border-radius: 10px;
+}
+.main .closeorder:hover {
+  background: #32352f;
+}

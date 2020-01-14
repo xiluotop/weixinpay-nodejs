@@ -1,0 +1,25 @@
+{
+  "name": "weixinpay-sdk",
+  "version": "1.0.0",
+  "description": "基于微信官方的原生 API 封装而成的 SDK，将官方要求的 xml 格式均通过 sdk 转换成 JSON 格式方便开发，当前已支持 Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "微信支付",
+    "weixinpay",
+    "weixinpaysdk",
+    "weixinpay-sdk",
+    "支付",
+    "微信",
+    "Native"
+  ],
+  "author": "xiluo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "md5": "^2.2.1",
+    "random-string": "^0.2.0"
+  }
+}

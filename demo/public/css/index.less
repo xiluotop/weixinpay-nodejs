@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  position: relative;
+  h1{
+    margin-left: 50px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .info {
+    height: 80px;
+    background: #ccc;
+    box-sizing: border-box;
+    padding:10px 50px;
+    p {
+      margin-top: 5px;
+    }
+    .left {
+      float: left;
+    }
+    .right{
+      float: right;
+      height: 100%;
+      p{
+        height: 100%;
+        transform: translateY(25%);
+      }
+    }
+  }
+  .paypic {
+    text-align: center;
+    .logo{
+      width: 350px;
+      height: 100px;
+      margin: 20px 0;
+    }
+    #qrcode {
+      height: 280px;
+      width: 280px;
+      margin: 10px auto;
+      position: relative;
+      .success{
+        width:280px;
+        height: 280px;
+        line-height: 280px;
+        text-align: center;
+        font-size: 30px;
+        letter-spacing: 10px;
+        position: absolute;
+        z-index: 1;
+        color: aliceblue;
+        background-color: rgba(17, 16, 16,.8);
+        display: none;
+      }
+    }
+    .picinfo{
+      width: 280px;
+    }
+  }
+  .queryorder {
+    cursor: pointer;
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+    background: greenyellow;
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    &:hover{
+      background: rgb(126, 190, 30);
+    }
+  }
+  .closeorder {
+    cursor: pointer;
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+    background: rgb(184, 185, 183);
+    text-align: center;
+    font-size: 30px;
+    position: absolute;
+    right: 160px;
+    bottom: 0;
+    border-radius: 10px;
+    &:hover{
+      background: rgb(50, 53, 47);
+    }
+  }
+}
+
