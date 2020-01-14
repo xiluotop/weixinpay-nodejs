@@ -1,6 +1,7 @@
 # 微信支付 weixinpay-sdk
 
 * 线上测试地址：<http://jiangck.com:10002>
+* demo 使用方式：`npm i` 安装依赖环境，`node app.js` 启动项目，默认访问 10002 端口即可打开页面，异步通知需在公网环境测试
 
 ## 版本说明
 
